@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Code Validator</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        #container {
+            text-align: center;
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+            margin-top: 10px;
+            width: 120px;
+            text-align: center;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        #result {
+            margin-top: 20px;
+            font-size: 18px;
+        }
+    </style>
+    <script>
+        function validateCode() {
+            var inputCode = document.getElementById("codeInput").value;
+            var correctCode = "650-383";
+            
+            if (inputCode === correctCode) {
+                document.getElementById("result").innerText = "ура, теперь можно бежать к пачкомату!!😎";
+                document.getElementById("result").style.color = "green";
+            } else {
+                document.getElementById("result").innerText = "что-то не то. посмотри ребус еще раз и попробуй заново :)";
+                document.getElementById("result").style.color = "red";
+            }
+        }
+
+        function formatCodeInput() {
+            var input = document.getElementById("codeInput");
+            var value = input.value.replace(/-/g, '');
+            if (value.length > 3) {
+                value = value.slice(0, 3) + '-' + value.slice(3);
+            }
+            input.value = value;
+        }
+    </script>
+</head>
+<body>
+    <div id="container">
+        <h2>проверь код тут:</h2>
+        <input type="text" id="codeInput" placeholder="111-111" oninput="formatCodeInput()" maxlength="7">
+        <button onclick="validateCode()">проверка</button>
+        <p id="result"></p>
+    </div>
+</body>
+</html>
